@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contacto - Fernanda Camandulle</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <!-- TOKEN-ALUMNO: camandulle-5746-93 -->
+    <header>
+      <h1>Portal de Fernanda Camandulle - camandulle-5746-93</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="acercade.html">Acerca de</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+    <h2>Contacto</h2>
+
+    <form action="#" method="get">
+        <!-- Nombre: required + maxlength -->
+        <p>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required maxlength="20">
+        </p>
+
+        <!-- Apellido: solo maxlength, no required -->
+        <p>
+            <label for="apellido">Apellido:</label>
+            <input type="text" id="apellido" name="apellido" maxlength="20">
+        </p>
+
+        <!-- Email: type=email + required (el navegador ya valida formato usuario@dominio) -->
+        <p>
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" required>
+        </p>
+
+        <!-- Teléfono: solo placeholder, sin required -->
+        <p>
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="Ej: +54 2920 123456">
+        </p>
+
+        <!-- Edad: number con min y max -->
+        <p>
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad" name="edad" min="16" max="120">
+        </p>
+
+        <!-- Dirección: texto libre -->
+        <p>
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" name="direccion">
+        </p>
+
+        <!-- Provincia: input de texto + datalist con sugerencias, no obliga a elegir de la lista -->
+        <p>
+            <label for="provincia">Provincia:</label>
+            <input type="text" id="provincia" name="provincia" list="provincias">
+            <datalist id="provincias">
+                <option value="Río Negro">
+                <option value="Neuquén">
+                <option value="Chubut">
+                <option value="Santa Cruz">
+                <option value="Tierra del Fuego">
+                <option value="La Pampa">
+            </datalist>
+        </p>
+
+        <!-- Código Postal: pattern regex + title (mensaje que ve el usuario si falla) -->
+        <p>
+            <label for="cp">Código Postal:</label>
+            <input type="text" id="cp" name="cp" pattern="^[A-Z]\d{4}[A-Z]{3}$" title="Formato requerido: una letra mayúscula, 4 números y 3 letras mayúsculas. Ej: R8500AAF">
+        </p>
+
+        <!-- Método de contacto: mismo name="metodo-contacto" para que sean excluyentes entre sí -->
+        <fieldset>
+            <legend>Método de Contacto Preferido:</legend>
+            <p>
+                <input type="radio" id="contacto-email" name="metodo-contacto" value="email" checked>
+                <label for="contacto-email">Correo electrónico</label>
+            </p>
+            <p>
+                <input type="radio" id="contacto-postal" name="metodo-contacto" value="postal">
+                <label for="contacto-postal">Correo postal</label>
+            </p>
+            <p>
+                <input type="radio" id="contacto-telefono" name="metodo-contacto" value="telefono">
+                <label for="contacto-telefono">Teléfono</label>
+            </p>
+        </fieldset>
+
+        <!-- Suscripciones: checkboxes, cada uno independiente (pueden marcarse varios a la vez) -->
+        <fieldset>
+            <legend>Suscripción de Interés:</legend>
+            <p>
+                <input type="checkbox" id="sub-noticias" name="suscripcion" value="noticias">
+                <label for="sub-noticias">Noticias</label>
+            </p>
+            <p>
+                <input type="checkbox" id="sub-promociones" name="suscripcion" value="promociones">
+                <label for="sub-promociones">Promociones</label>
+            </p>
+            <p>
+                <input type="checkbox" id="sub-alertas" name="suscripcion" value="alertas" checked>
+                <label for="sub-alertas">Alertas</label>
+            </p>
+            <p>
+                <input type="checkbox" id="sub-eventos" name="suscripcion" value="eventos">
+                <label for="sub-eventos">Eventos</label>
+            </p>
+        </fieldset>
+
+        <p>
+            <button type="submit" id="btn-cargar-camandulle-5746-93">Cargar</button>
+        </p>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Campo</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Nombre</td>
+                <td id="resumen-nombre"></td>
+            </tr>
+            <tr>
+                <td>Apellido</td>
+                <td id="resumen-apellido"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td id="resumen-email"></td>
+            </tr>
+            <tr>
+                <td>Teléfono</td>
+                <td id="resumen-telefono"></td>
+            </tr>
+            <tr>
+                <td>Edad</td>
+                <td id="resumen-edad"></td>
+            </tr>
+            <tr>
+                <td>Dirección</td>
+                <td id="resumen-direccion"></td>
+            </tr>
+            <tr>
+                <td>Provincia</td>
+                <td id="resumen-provincia"></td>
+            </tr>
+            <tr>
+                <td>CP</td>
+                <td id="resumen-cp"></td>
+            </tr>
+            <tr>
+                <td>Método de Contacto</td>
+                <td id="resumen-metodo-contacto"></td>
+            </tr>
+            <tr>
+                <td>Suscripciones</td>
+                <td id="resumen-suscripciones"></td>
+            </tr>
+        </tbody>
+    </table>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 Fernanda Camandulle</p>
+      <p>CURZAS - UNCo, Viedma, Río Negro</p>
+      <p>Token: camandulle-5746-93</p>
+    </footer>
+  </body>
+</html>
