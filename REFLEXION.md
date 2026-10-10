@@ -39,3 +39,31 @@ Mismo name: Cuando varios radios comparten el mismo valor de name, el navegador 
 Distinto name: Si cada radio tuviera un name diferente, el navegador ya no los reconocería como parte de un mismo grupo. Cada uno se comportaría de forma independiente, y el usuario podría terminar marcando varios (o todos) al mismo tiempo — perdiendo justamente el propósito de "elegí una sola opción entre varias", que es la razón de ser del radio button.
 
 Justamente por eso los checkboxes de Suscripción sí tienen todos el mismo name="suscripcion" pero eso NO los hace excluyentes — la exclusión es un comportamiento exclusivo de type="radio", no de compartir name en general.
+
+
+
+# Reflexión Aplicada - TP4
+
+## 1. Animación de rotación del logo
+
+```css
+.logo-curza {
+    height: 45px;
+    background-color: white;
+    border-radius: 50%;
+    padding: 3px;
+    transition: transform 1s ease-in-out;
+}
+
+.logo-curza:hover {
+    transform: rotateY(360deg);
+}
+```
+
+## 2. Por qué sticky necesita background-color
+
+Un elemento con `position: sticky` se queda pegado arriba mientras el usuario hace scroll, pero el texto de la biografía sigue moviéndose y pasa por detrás de él. Si el título no tiene `background-color`, es transparente, así que el texto que sube se vería a través del título y se mezclaría con las letras, quedando difícil de leer. Al definirle un fondo del mismo color que el de la caja, el título tapa el texto que pasa por debajo y se mantiene legible.
+
+## 3. Cambios visuales en pantalla de celular
+
+Al probar el sitio en una pantalla menor a 768px, las reglas `@media` cambian varias cosas. El menú de navegación, que en escritorio se ve en fila, pasa a apilarse verticalmente con un enlace debajo del otro. En el formulario, las etiquetas pasan a quedar arriba de cada campo en lugar de al costado, para aprovechar mejor el poco ancho disponible. Y la tabla de resumen permite desplazamiento horizontal, así no se sale del ancho de la pantalla ni rompe el diseño. También se aumenta el espacio superior del contenido, porque el header ocupa más alto al tener el menú apilado.
