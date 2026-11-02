@@ -67,3 +67,52 @@ Un elemento con `position: sticky` se queda pegado arriba mientras el usuario ha
 ## 3. Cambios visuales en pantalla de celular
 
 Al probar el sitio en una pantalla menor a 768px, las reglas `@media` cambian varias cosas. El menú de navegación, que en escritorio se ve en fila, pasa a apilarse verticalmente con un enlace debajo del otro. En el formulario, las etiquetas pasan a quedar arriba de cada campo en lugar de al costado, para aprovechar mejor el poco ancho disponible. Y la tabla de resumen permite desplazamiento horizontal, así no se sale del ancho de la pantalla ni rompe el diseño. También se aumenta el espacio superior del contenido, porque el header ocupa más alto al tener el menú apilado.
+
+
+
+# Reflexión Aplicada - TP5
+
+## 1. Código para validar la edad menor a 18 años
+
+```js
+function actualizarEdad() {
+  const valor = campoEdad.value;
+
+  if (valor !== "" && Number(valor) < 18) {
+    celdaEdad.style.backgroundColor = "#ffcccc";
+    celdaEdad.innerText = valor + " (Menor de edad)";
+  } else {
+    celdaEdad.style.backgroundColor = "";
+    celdaEdad.innerText = valor;
+  }
+}
+
+campoEdad.addEventListener("input", actualizarEdad);
+```
+
+## 2. Diferencia entre los eventos 'input' y 'change'
+
+Usé el evento `input` porque se dispara cada vez que el valor del campo cambia, es decir, con cada tecla que escribo o borro. Así la tabla de resumen se actualiza en tiempo real mientras completo el formulario, que es lo que pide el laboratorio.
+
+El evento `change`, en cambio, en los campos de texto se dispara recién cuando termino de editar y el campo pierde el foco (o presiono Enter). Si lo hubiera usado para el volcado, la tabla se actualizaría de golpe al salir del campo y no se vería el efecto reactivo. Por eso `change` lo reservé para los controles de selección: la provincia, los botones de opción del método de contacto y las casillas de suscripción, que cambian de estado con un solo clic.
+
+## 3. Código específico de una página en un script compartido
+
+El archivo `script.js` se carga en `contacto.html` y en `acercade.html`, pero cada página tiene elementos que la otra no tiene. Si buscaba el botón "Leer más" estando en `contacto.html`, `getElementById` devolvía `null` y al intentar usar `addEventListener` sobre ese `null` se producía un error en la consola.
+
+Lo resolví buscando primero un elemento exclusivo de cada página y ejecutando el código solo si existe:
+
+```js
+const formulario = document.querySelector("form");
+const botonLeerMas = document.getElementById("btn-leer-mas-camandulle-5746-93");
+
+if (formulario) {
+  // código del formulario de contacto
+}
+
+if (botonLeerMas) {
+  // código del botón Leer más
+}
+```
+
+Como `null` se evalúa como falso dentro de un `if`, el bloque que no corresponde a la página actual simplemente se saltea y no hay errores de elementos no encontrados en ninguna de las dos páginas.
